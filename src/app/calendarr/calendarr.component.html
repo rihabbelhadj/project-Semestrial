@@ -1,0 +1,36 @@
+<div id="calendar" style="padding-left: 10%;padding-top: 10%">
+    <div id="calendar_header">
+        <div class="arrow">
+            <mat-icon (click)="goToLastMonth()">arrow_back</mat-icon>
+        </div>
+        <div class="title">
+            {{currentMonth}} - {{currentYear}}
+        </div>
+        <div class="arrow">
+            <mat-icon (click)="goToNextMonth()">arrow_forward</mat-icon>
+        </div>
+    </div>
+    <div id="calendar_weekdays">
+        <div *ngFor="let day of dayNames" class="calendar_weekday">{{day}}</div>
+    </div>
+    <div id="calendar_content">
+        <div *ngFor="let dayItem of daysInLastMonth">
+            <div class="week-date disabled">
+                <span class="date-text">{{dayItem.day}}</span>
+            </div>
+        </div>
+        <div *ngFor="let dayItem of daysInThisMonth">
+            <div class="week-date enabled" [ngClass]="{'selected' : dayItem.hasEvent }" (click)="selectDate(dayItem)">
+                <span class="date-text">{{dayItem.day}}</span>
+            </div>
+        </div>
+        <div *ngFor="let dayItem of daysInNextMonth">
+            <div class="week-date disabled">
+                <span class="date-text">{{dayItem.day}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--div ></div!---->
