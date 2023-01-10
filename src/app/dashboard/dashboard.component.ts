@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import {UserService} from "../user.service";
+import {Users} from "../model/users";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,8 +9,9 @@ import * as Chartist from 'chartist';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+    private userList: Users[];
+    public totaluser: number;
+  constructor(public userService : UserService) { }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -66,6 +69,11 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+      this.userService.getAllUsers().subscribe(data =>{
+          this.userList =data;
+          this.totaluser = this.userList.length;
+          //console.log('length:'+this.totalRecords)
+      })
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {
@@ -84,9 +92,9 @@ export class DashboardComponent implements OnInit {
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
       }
 
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+      /*var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);*/
 
-      this.startAnimationForLineChart(dailySalesChart);
+      /*this.startAnimationForLineChart(dailySalesChart);*/
 
 
       /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
@@ -141,10 +149,10 @@ export class DashboardComponent implements OnInit {
           }
         }]
       ];
-      var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
+    /*  var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
 
       //start animation for the Emails Subscription Chart
-      this.startAnimationForBarChart(websiteViewsChart);
+      this.startAnimationForBarChart(websiteViewsChart);*/
   }
 
 }

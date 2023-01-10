@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -10,6 +10,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import {BrowserModule} from "@angular/platform-browser";
 import { CalendarrComponent } from './calendarr/calendarr.component';
 import {MatIconModule} from "@angular/material/icon";
+import {CommonModule} from "@angular/common";
+
 
 @NgModule({
   imports: [
@@ -21,15 +23,18 @@ import {MatIconModule} from "@angular/material/icon";
     RouterModule,
     AppRoutingModule,
     BrowserModule,
-    MatIconModule,
+    MatIconModule
+
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     CalendarrComponent,
 
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
