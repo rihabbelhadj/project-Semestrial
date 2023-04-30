@@ -9,7 +9,7 @@ import {Users} from "../model/users";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    private userList: Users[];
+    public userList: any;
     public totaluser: number;
   constructor(public userService : UserService) { }
   startAnimationForLineChart(chart){
@@ -69,9 +69,11 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
-      this.userService.getAllUsers().subscribe(data =>{
+      this.userService.getAllEmployes().subscribe(data =>{
           this.userList =data;
-          this.totaluser = this.userList.length;
+          console.log(data);
+          this.totaluser = data.data.length;
+          console.log("aaaa",this.totaluser)
           //console.log('length:'+this.totalRecords)
       })
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */

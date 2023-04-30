@@ -17,18 +17,26 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class UserService {
-    public host = 'https://localhost/../php';
+    public host = 'http://localhost:3000';
+   
 
     constructor(private _http: HttpClient) {
     }
 
-    getAllUsers(): Observable<Users[]> {
-        return this._http.get<Users[]>(this.host+'/getUsers');
+    getAllUsers(): Observable<any> {
+        return this._http.get<any>(this.host+'/employes');
+    }
+    getAllEmployes(): Observable<any> {
+        return this._http.get<any>(this.host+'/user');
     }
     /*addUsers(user:User){
         return this._http.post(this.host+'/Register',user);
     }*/
+    postCongi(data:any):Observable<any>{
+        console.log(data , "createdData");
+      return this._http.post(this.host+'/freetime',data);
 
+    }
     updateUser(user:Users){
         return this._http.put(this.host+'/update',user);
     }
@@ -44,7 +52,9 @@ export class UserService {
     filter(filterBy : string){
         this._listners.next(filterBy);
     }
-
+userLogin(){
+    
+}
 
 
 }

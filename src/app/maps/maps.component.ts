@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { UserService } from 'app/user.service';
 
 @Component({
   selector: 'app-maps',
@@ -8,24 +9,27 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class MapsComponent implements OnInit {
 
-    form: FormGroup;
 
     ngOnInit(): void {
-        this.buildForm();
+       
     }
 
-    constructor(private formBuilder: FormBuilder) {}
-
-    send(): void {
-        const { name, email, message } = this.form.value;
-        alert(`Name: ${name}, Email: ${email}, Message: ${message} `);
+    constructor(private formBuilder: FormBuilder , public userService:UserService) {}
+public errormsg:any;
+    send(){
+        if (this.form.valid){
+            console.log(this.form.value);
+            this.userService.postCongi(this.form.value).subscribe((res)=>{
+                console.log(res,"res");
+            })
+    }else
+        this.errormsg='all field is required';
+       
     }
-
-    private buildForm(): void {
-        this.form = this.formBuilder.group({
-            name: this.formBuilder.control(null),
-            email: this.formBuilder.control(null),
-            message: this.formBuilder.control(null),
-        });
-    }
+form=new FormGroup({
+'UserName':new FormControl('',Validators.required),
+'email':new FormControl('',Validators.required),
+'message':new FormControl('',Validators.required)
+})
+   
 }

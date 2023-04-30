@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    isLogeedIn=false;
 
     constructor(location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
@@ -33,7 +34,16 @@ export class NavbarComponent implements OnInit {
          }
      });
     }
-
+    isUserLoggedIn(){
+        console.log("ya rabii ,",localStorage.getItem('email'))
+        if (((localStorage.getItem('email')))!= null){
+            return this.isLogeedIn=true;
+        }
+    }
+    onDeconnect(){
+        localStorage.removeItem('user');
+        localStorage.removeItem('email');
+    }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const body = document.getElementsByTagName('body')[0];

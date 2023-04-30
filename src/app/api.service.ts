@@ -10,17 +10,13 @@ import { Users } from './model/users';
 
 export class ApiService {
     redirectUrl: string;
-    baseUrl:string = "http://localhost/angular_admin/php";
+    baseUrl:string = "http://localhost:3000";
     @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
     constructor(private httpClient : HttpClient) { }
-    public userlogin(username, password) {
-        alert(username)
-        return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
-            .pipe(map(Users => {
-                this.setToken(Users[0].name);
-                this.getLoggedInName.emit(true);
-                return Users;
-            }));
+    public userlogin(email, password) {
+        alert(email)
+        return this.httpClient.post<any>(this.baseUrl + '/login', { email, password })
+            
     }
 
     public userregistration(name,email,pwd) {

@@ -15,13 +15,13 @@
                                       ID
                                   </th>
                                   <th>
-                                      Name
+                                     FirstName
                                   </th>
                                   <th>
-                                      Tag ID
+                                     LastName
                                   </th>
                                   <th>
-                                      Tag Number
+                                     Email
                                   </th>
                               <th>
                                   Actions
@@ -29,18 +29,19 @@
 
                               </thead>
                               <tbody>
-                                  <tr>
+                                  <tr *ngFor="let us of a">
                                       <td>
-                                          1
+                                          {{us.idUser}}
                                       </td>
                                       <td>
-                                          Dakota Rice
+                                        {{us.FirstName}}
+                                        
                                       </td>
                                       <td>
-                                          Niger
+                                        {{us.LastName}}
                                       </td>
                                       <td>
-                                          Oud-Turnhout
+                                        {{us.email}}
                                       </td>
                                       <td>
                                         <button type="button" class="btn btn-danger">Delete</button>
@@ -61,3 +62,4 @@
       </div>
   </div>
 </div>
+

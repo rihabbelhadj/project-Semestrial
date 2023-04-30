@@ -54,8 +54,11 @@
                 </li>
             </ul>
         </div>
-        <p >
+        <p *ngIf="!isUserLoggedIn()">
             <a class="btn btn-lg btn-primary" href="" role="button" routerLink="login">Login</a>
+        </p>
+        <p *ngIf="isUserLoggedIn()" (click)="onDeconnect()">
+            <a class="btn btn-lg btn-primary" href="" role="button" routerLink="login">Disconnect</a>
         </p>
     </div>
 </nav>

@@ -10,6 +10,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import {CalendarrComponent} from "../../calendarr/calendarr.component";
 import {LoginComponent} from "../../login/login.component";
+import { AuthGuardGuard } from 'app/authGuard';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -54,10 +55,10 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'dashboard',      component: DashboardComponent },
+    { path: 'dashboard',      component: DashboardComponent  },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
-    { path: 'typography',     component: TypographyComponent },
+    { path: 'typography',     component: TypographyComponent},
     { path: 'icons',          component: CalendarrComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
